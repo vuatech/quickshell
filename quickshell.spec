@@ -14,12 +14,14 @@ Group:              Graphical desktop/Other
 
 BuildSystem:    cmake
 BuildOption:    -GNinja
-BuildOption:    -DBUILD_SHARED_LIBS=OFF
+BuildOption:    -DBUILD_SHARED_LIBS=OFF 
 BuildOption:    -DCMAKE_BUILD_TYPE=RelWithDebInfo
 BuildOption:    -DDISTRIBUTOR="OpenMandriva LX"
 BuildOption:    -DDISTRIBUTOR_DEBUGINFO_AVAILABLE=YES
 BuildOption:    -DINSTALL_QML_PREFIX="lib64/qt6/qml"
 BuildOption:    -DINSTALL_QMLDIR="%{_qtdir}/qml"
+BuildOption:    -DWAYLAND_WLR_LAYERSHELL=OFF
+BuildOption:    -DWAYLAND_SESSION_LOCK=OFF
 
 BuildRequires:      cmake
 BuildRequires:      cmake(Qt6Core)
