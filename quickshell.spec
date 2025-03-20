@@ -4,7 +4,7 @@
 
 Name:               quickshell
 Version:            0~%{bumpver}.git%{quickshell_shortcommit}
-Release:            4
+Release:            5
 Summary:            Flexible QtQuick based desktop shell toolkit
 
 License:            LGPL-3.0-only AND GPL-3.0-only
