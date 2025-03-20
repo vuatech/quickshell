@@ -1,9 +1,11 @@
 %global commit      eabf79ebb640dbfab6a3ff4639db65e64e05d941
 %global snapdate    20250319
+%global quickshell_shortcommit %(c=%{commit}; echo ${c:0:7})
+%global bumpver 1
 
 Name:               quickshell
-Version:            0^%{snapdate}g%(c=%{commit}; echo ${c:0:7})
-Release:            1
+Version:            0~%{bumpver}.git%{quickshell_shortcommit}
+Release:            4
 Summary:            Flexible QtQuick based desktop shell toolkit
 
 License:            LGPL-3.0-only AND GPL-3.0-only
