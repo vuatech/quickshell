@@ -53,5 +53,6 @@ Requires:      pkgconfig(pam)
 
 %files
 %license LICENSE LICENSE-GPL
+%{_bindir}/qs
 %{_bindir}/quickshell
 %{_qtdir}/qml/*
