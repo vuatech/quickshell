@@ -14,17 +14,28 @@ Group:		Graphical desktop/Other
 BuildSystem:	cmake
 BuildOption:-DDISTRIBUTOR="OpenMandriva LX" BuildOption:-DISTRIBUTOR_DEBUGINFO_AVAILABLE=YES BuildOption:-DCMAKE_BUILD_TYPE=RelWithDebInfo BuildOption:-DINSTALL_QML_PREFIX="%{_qtdir}" BuildOption:-DINSTALL_QMLDIR="%{_qtdir}/qml"
 
-BuildRequires:	qt6declarative
-BuildRequires:  cmake(spirv-tools)
-BuildRequires:  qtshadertools
-
-Requires:   pkgconfig(cli11)
-Requires:   pkgconfig(qt6base)
-Requires:   pkgconfig(qt6svg)
+BuildRequires:      cmake
+BuildRequires:      cmake(Qt6Core)
+BuildRequires:      cmake(Qt6Qml)
+BuildRequires:      cmake(Qt6ShaderTools)
+BuildRequires:      cmake(Qt6WaylandClient)
+BuildRequires:      gcc-c++
+BuildRequires:      ninja-build
+BuildRequires:      pkgconfig(breakpad)
+BuildRequires:      pkgconfig(CLI11)
+BuildRequires:      pkgconfig(gbm)
+BuildRequires:      pkgconfig(jemalloc)
+BuildRequires:      pkgconfig(libdrm)
+BuildRequires:      pkgconfig(libpipewire-0.3)
+BuildRequires:      pkgconfig(pam)
+BuildRequires:      pkgconfig(wayland-client)
+BuildRequires:      pkgconfig(wayland-protocols)
+BuildRequires:      qt6-qtbase-private-devel
+BuildRequires:      spirv-tools
 
 %description
 
 %prep
-%autosetup -p1
+%autosetup -n %{name}-%{commit} -p1
 
 %files
