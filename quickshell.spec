@@ -52,3 +52,6 @@ Requires:      pkgconfig(pam)
 %autosetup -n %{name}-%{commit} -p1
 
 %files
+%license LICENSE LICENSE-GPL
+%{_bindir}/quickshell
+%{_qtdir}/qml/*
