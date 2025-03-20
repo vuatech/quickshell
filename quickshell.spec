@@ -12,44 +12,41 @@ URL:                https://github.com/quickshell-mirror/quickshell
 Source0:            %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
 Group:              Graphical desktop/Other
 
-#BuildRequires:      cmake
-#BuildRequires:      cmake(Qt6Core)
-#BuildRequires:      cmake(Qt6Qml)
-#BuildRequires:      cmake(Qt6ShaderTools)
-#BuildRequires:      cmake(Qt6WaylandClient)
-#BuildRequires:      gcc-c++
-#BuildRequires:      ninja-build
-#BuildRequires:      pkgconfig(breakpad)
-#BuildRequires:      pkgconfig(CLI11)
-#BuildRequires:      pkgconfig(gbm)
-#BuildRequires:      pkgconfig(jemalloc)
-#BuildRequires:      pkgconfig(libdrm)
-#BuildRequires:      pkgconfig(libpipewire-0.3)
-#BuildRequires:      pkgconfig(pam)
-#BuildRequires:      pkgconfig(wayland-client)
-#BuildRequires:      pkgconfig(wayland-protocols)
-#BuildRequires:      qt6-qtbase-private-devel
-#BuildRequires:      spirv-tools
+BuildSystem:    cmake
+BuildOption:    -GNinja
+BuildOption:    -DBUILD_SHARED_LIBS=OFF
+BuildOption:    -DCMAKE_BUILD_TYPE=RelWithDebInfo
+BuildOption:    -DDISTRIBUTOR="OpenMandriva LX"
+BuildOption:    -DDISTRIBUTOR_DEBUGINFO_AVAILABLE=YES
+BuildOption:    -DINSTALL_QML_PREFIX="lib64/qt6/qml"
+BuildOption:    -DINSTALL_QMLDIR="%{_qtdir}/qml"
+
+BuildRequires:      cmake
+BuildRequires:      cmake(Qt6Core)
+BuildRequires:      cmake(Qt6Gui)
+BuildRequires:      cmake(Qt6Qml)
+BuildRequires:      cmake(Qt6Quick)
+BuildRequires:      cmake(Qt6QuickControls2)
+BuildRequires:      cmake(Qt6Widgets)
+BuildRequires:      cmake(Qt6ShaderTools)
+BuildRequires:      cmake(Qt6WaylandClient)
+BuildRequires:      pkgconfig(CLI11)
+BuildRequires:      pkgconfig(breakpad)
+BuildRequires:      pkgconfig(gbm)
+BuildRequires:      pkgconfig(libdrm)
+BuildRequires:      pkgconfig(libpipewire-0.3)
+BuildRequires:      pkgconfig(jemalloc)
+BuildRequires:      cmake(Qt6QmlNetwork)
+BuildRequires:      qt6-qtbase-theme-gtk3
+BuildRequires:      cmake(Qt6QmlCore)
+BuildRequires:      pkgconfig(pam)
+
+
+Requires:      pkgconfig(pam)
 
 %description
 
 %prep
 %autosetup -n %{name}-%{commit} -p1
-
-%build
-%cmake  -GNinja \
-%if %{with asan}
-        -DASAN=ON \
-%endif
-        -DBUILD_SHARED_LIBS=OFF \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DDISTRIBUTOR="Fedora COPR (errornointernet/quickshell)" \
-        -DDISTRIBUTOR_DEBUGINFO_AVAILABLE=YES \
-        -DGIT_REVISION=%{commit} \
-        -DINSTALL_QML_PREFIX=%{_lib}/qt6/qml
-%cmake_build
-
-%install
-%cmake_install
 
 %files
